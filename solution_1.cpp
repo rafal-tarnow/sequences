@@ -22,15 +22,13 @@ bool isPrime(uint32_t number){
     return true;
 }
 
-int main_1(){
-    uint32_t A[9] = {2,3,9,2,5,1,3,7,10};
-    uint32_t B[13] = {2,1,3,4,3,10,6,6,1,7,10,10,10};
-    unsigned int B_array_size =  sizeof (B)/sizeof(*B);
 
+static vector<uint32_t> calculation(const vector<uint32_t> &A, const vector<uint32_t> &B)
+{
     //count how many times given elements appear in the B array
     map<uint32_t, uint32_t> B_map;
-    for(unsigned int i = 0; i < B_array_size; i++){
-        B_map[B[i]]++;
+    for(const auto & B_elem: B){
+        B_map[B_elem]++;
     }
 
     //rewriting elements of array A to vector C with given condition
@@ -39,9 +37,41 @@ int main_1(){
         if(!isPrime(B_map[A_elem]))
             C_vec.push_back(A_elem);
     }
+    return C_vec;
+}
+
+
+int main_1(){
+    vector<uint32_t> A;
+    A.push_back(2);
+    A.push_back(3);
+    A.push_back(9);
+    A.push_back(2);
+    A.push_back(5);
+    A.push_back(1);
+    A.push_back(3);
+    A.push_back(7);
+    A.push_back(10);
+
+    vector<uint32_t> B;
+    B.push_back(2);
+    B.push_back(1);
+    B.push_back(3);
+    B.push_back(4);
+    B.push_back(3);
+    B.push_back(10);
+    B.push_back(6);
+    B.push_back(6);
+    B.push_back(1);
+    B.push_back(7);
+    B.push_back(10);
+    B.push_back(10);
+    B.push_back(10);
+
+    vector<uint32_t> C = calculation(A,B);
 
     cout << "Print solution :" << endl;
-    for(const auto & ans: C_vec){
+    for(const auto & ans: C){
         cout << ans << endl;
     }
     return 0;
